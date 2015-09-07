@@ -1,8 +1,14 @@
-<resources>
+<resources xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:textViewStyle">@style/TypeFaceTextView</item>
     </style>
+
+    <style name="TypeFaceTextView">
+
+    </style>
+
 
 </resources>

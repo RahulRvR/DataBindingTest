@@ -1,6 +1,8 @@
 package com.rahulrvr.databinding;
 
+import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -8,6 +10,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.rahulrvr.databinding.databinding.ActivityMainBinding;
 
@@ -16,11 +19,12 @@ public class MainActivity extends AppCompatActivity {
     EditText txtInput;
     ActivityMainBinding binding;
     User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
-         user = new User("Rahul","rv@rv.com");
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        user = new User("Rahul", "rv@rv.com");
         binding.setUser(user);
         txtInput = (EditText) findViewById(R.id.txtInput);
         txtInput.addTextChangedListener(new TextWatcher() {
@@ -31,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                user.name= s.toString();
+                user.name = s.toString();
                 binding.setUser(user);
             }
 
@@ -63,5 +67,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @BindingAdapter({"bind:font"})
+    public static void setFont(TextView textView, String fontName) {
+        textView.setTypeface(Typeface.createFromAsset(textView.getContext().getAssets(), fontName));
     }
 }
